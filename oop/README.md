@@ -1,5 +1,5 @@
 # Object Oriented Programming
-deals more with objects that have attributes and behaviours, rather than functions and logic.
+Deals more with objects that have attributes and behaviours, rather than functions and logic.
 
 Focus is put on the objects that are manipulative.
 
