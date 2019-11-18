@@ -10,20 +10,17 @@ import java.io.FileNotFoundException;
 
 
 public class Todo {
+
+    public static String toDo = "toDoList.txt";
+    public static File todo = new File(toDo);
     
     public static void main(String[] args) {
 
-        boolean jobNotEntered = true;
+        System.out.println(printDetails());
 
-        System.out.println("Available commands.\n" +
-            "'add e' to add an event.\n" +
-            "'add t' to add a task.\n" +
-            "'r to remove most recent job.\n" +
-            "'job' to print the most recent job\n" +
-            "'all' to print the all jobs\n" +
-            "'q' to quit.");
+        boolean running = true;
 
-        while(jobNotEntered){
+        while(running){
 
             System.out.println("Enter command: ");
             
@@ -54,16 +51,33 @@ public class Todo {
                 printAll();
             }
 
+            if(job.equals("help")){
+
+                System.out.println(printDetails());
+            }
+
             if(job.equals("q")){
 
-                jobNotEntered = false;
+                running = false;
             }
         }
     }
 
-    public static void addTask() {
+    public static String printDetails(){
 
-        try(FileWriter f = new FileWriter("toDoList.txt", true);
+        return "Available commands.\n" +
+            "'add e' to add an event.\n" +
+            "'add t' to add a task.\n" +
+            "'r' to remove most recent job.\n" +
+            "'job' to print the most recent job.\n" +
+            "'all' to print the all jobs.\n" +
+            "'help' to print commands.\n" +
+            "'q' to quit.";
+    }
+
+    public static void addTask(){
+
+        try(FileWriter f = new FileWriter(toDo, true);
             BufferedWriter bw = new BufferedWriter(f);
             PrintWriter file = new PrintWriter(bw)){
 
@@ -86,14 +100,14 @@ public class Todo {
             time + ", "  + duration + ", "  + "[" + people + "]");
 
         } 
-        catch (IOException e) {
+        catch (IOException e){
             System.out.println("Unable to write to file.");
         }
     }
 
-    public static void addEvent() {
+    public static void addEvent(){
 
-        try(FileWriter f = new FileWriter("toDoList.txt", true);
+        try(FileWriter f = new FileWriter(toDo, true);
             BufferedWriter bw = new BufferedWriter(f);
             PrintWriter file = new PrintWriter(bw)){
 
@@ -114,7 +128,7 @@ public class Todo {
             time + ", "  + location);
 
         } 
-        catch (IOException e) {
+        catch (IOException e){
             System.out.println("Unable to write to file.");
         }
     }
@@ -122,10 +136,10 @@ public class Todo {
     public static void remove(){
 
         try{
-            File inputFile = new File("toDoList.txt");
-
-            File tempFile = new File(inputFile.getAbsolutePath() + ".tmp");
-            BufferedReader br = new BufferedReader(new FileReader(inputFile));
+            
+            // temp file is called toDoList.temp
+            File tempFile = new File(todo.getAbsolutePath() + ".tmp");
+            BufferedReader br = new BufferedReader(new FileReader(todo));
             PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
             String line = null;
 
@@ -138,13 +152,13 @@ public class Todo {
             br.close();
 
             //Delete the original file
-            if (!inputFile.delete()) {
+            if (!todo.delete()){
                 System.out.println("Could not delete file");
                 return;
             }
 
             //Rename the new file to the filename the original file had.
-            if (!tempFile.renameTo(inputFile))
+            if (!tempFile.renameTo(todo))
                 System.out.println("Could not rename file");
             }
         catch(IOException e){
@@ -154,7 +168,6 @@ public class Todo {
 
     public static void showJob(){
         try{
-            File todo = new File("toDoList.txt");
             Scanner in = new Scanner(todo);
 
             boolean notEmpty = todo.length() != 0;
@@ -171,7 +184,6 @@ public class Todo {
     public static void printAll(){
 
         try{
-            File todo = new File("toDoList.txt");
             Scanner in = new Scanner(todo);
 
             boolean notEmpty = todo.length() != 0;
