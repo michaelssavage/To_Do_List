@@ -10,7 +10,7 @@ def main():
 	print("Available commands.\n" + 
 		"'add e' to add an Event.\n" +
 		"'add t' to add a Task\n" +
-		"'show' to show all jobs.\n" + 
+		"'all' to show all jobs.\n" + 
 		"'todo' to print first job.\n"+
 		"'r' to remove.\n" +
 		"'q' to quit.")
@@ -23,7 +23,11 @@ def main():
 
 		if job == 'todo':
 			#print the first job
-			q.todo()
+			print(q.todo())
+
+		elif job == 'all':
+			#print out all the jobs to be done
+			q.showAll()
 
 		elif job == 'r':
 			#remove the job with a confirmation
@@ -39,10 +43,6 @@ def main():
 			#go to add task
 			addTask(q)
 
-		elif job == 'show':
-			#print out all the jobs to be done
-			q.showAll()
-
 		else:
 			print("That is not a command.")
 
@@ -52,14 +52,19 @@ def main():
 def addTask(q):
 
 	#Task has a date, start time, duration, and list of assigned people.
-	newTask = Task(input("Task Name: "), input("Date: "), input("Start Time: "),
-		input("Duration: "), re.findall(r"[\w']+",input("People assigned to task: ")))
+	newTask = Task(input("Task Name: "), 
+		input("Date: "), 
+		input("Start Time: "),
+		input("Duration: "), 
+		re.findall(r"[\w']+",input("People assigned to task: ")))
 	q.enqueue(newTask)
 
 def addEvent(q):
 
 	#Event has a date, start time, and location
-	newEvent = Event(input("Event Name: "), input("Date: "), input("Start Time: "),
+	newEvent = Event(input("Event Name: "), 
+		input("Date: "), 
+		input("Start Time: "),
 		input("location: "))
 	q.enqueue(newEvent)
 
