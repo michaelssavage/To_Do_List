@@ -36,15 +36,16 @@ class Queue:
 
 	def todo(self):
 		if self.head:
-			print(self.head.item)
+			return self.head.item
 		else:
-			print("List is empty")
+			return "List is empty."
 
 	def showAll(self):
 		if self.head:
 			temp = self.head
+			show = []
 			while temp != None:
 				print(temp.item)
 				temp = temp.next
 		else:
-			print("List is empty")
+			print("List is empty.")
