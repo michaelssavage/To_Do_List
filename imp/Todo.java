@@ -69,10 +69,10 @@ public class Todo {
         return "Available commands.\n" +
             "'add e' to add an event.\n" +
             "'add t' to add a task.\n" +
-            "'r' to remove most recent job.\n" +
             "'job' to print the most recent job.\n" +
             "'all' to print the all jobs.\n" +
             "'help' to print commands.\n" +
+            "'r' to remove most recent job.\n" +
             "'q' to quit.";
     }
 
