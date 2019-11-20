@@ -1,16 +1,17 @@
 import java.io.File;
+import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
-import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 
 public class Todo {
 
+    // global variables
     public static String toDo = "toDoList.txt";
     public static File todo = new File(toDo);
     
