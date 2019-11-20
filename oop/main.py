@@ -9,10 +9,10 @@ def main():
 
 	print("Available commands.\n" + 
 		"'add e' to add an Event.\n" +
-		"'add t' to add a Task\n" +
+		"'add t' to add a Task.\n" +
+		"'job' to print the most recent job.\n"+
 		"'all' to show all jobs.\n" + 
-		"'todo' to print first job.\n"+
-		"'r' to remove.\n" +
+		"'r' to remove most recent job.\n" +
 		"'q' to quit.")
 	
 	job = input("Enter: ")
@@ -21,7 +21,7 @@ def main():
 		#get rid of any unwanted spaces
 		job = job.lower().strip()
 
-		if job == 'todo':
+		if job == 'job':
 			#print the first job
 			print(q.todo())
 
