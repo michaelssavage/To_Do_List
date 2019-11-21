@@ -11,13 +11,12 @@ import java.io.FileNotFoundException;
 
 public class Todo {
 
-    // global variables
     public static String toDo = "toDoList.txt";
     public static File todo = new File(toDo);
     
     public static void main(String[] args) {
 
-        System.out.println(printDetails());
+        System.out.println(help());
 
         boolean running = true;
 
@@ -54,7 +53,7 @@ public class Todo {
 
             if(job.equals("help")){
 
-                System.out.println(printDetails());
+                System.out.println(help());
             }
 
             if(job.equals("q")){
@@ -64,7 +63,7 @@ public class Todo {
         }
     }
 
-    public static String printDetails(){
+    public static String help(){
 
         return "Available commands.\n" +
             "'add e' to add an event.\n" +
@@ -82,23 +81,11 @@ public class Todo {
             BufferedWriter bw = new BufferedWriter(f);
             PrintWriter file = new PrintWriter(bw)){
 
-            System.out.println("Tasks have a date, a start time," + 
-            "a duration and a list of people assigned to the task.");
+// Tasks have a date, a start time, a duration and 
+// a list of people assigned to the task.
 
-            Scanner in = new Scanner(System.in);
-            System.out.println("Enter task name: ");
-            String name = in.nextLine();
-            System.out.println("Enter date: ");
-            String date = in.nextLine();
-            System.out.println("Enter start time: ");
-            String time = in.nextLine();
-            System.out.println("Enter duration: ");
-            String duration = in.nextLine();
-            System.out.println("Enter list of people assigned to the task: ");
-            String people = in.nextLine();
-
-            file.println(name + ": " + date + ", " +
-            time + ", "  + duration + ", "  + "[" + people + "]");
+            String data = getUserInput("task");
+            file.println(data);
 
         } 
         catch (IOException e){
@@ -112,25 +99,44 @@ public class Todo {
             BufferedWriter bw = new BufferedWriter(f);
             PrintWriter file = new PrintWriter(bw)){
 
-            System.out.println("An event has a date, " +
-            "a start time and a location. ");
+// An event has a date, a start time and a location.            
 
-            Scanner in = new Scanner(System.in);
-            System.out.println("Enter event name: ");
-            String name = in.nextLine();
-            System.out.println("Enter date: ");
-            String date = in.nextLine();
-            System.out.println("Enter start time: ");
-            String time = in.nextLine();
-            System.out.println("Enter location: ");
-            String location = in.nextLine();
-
-            file.println(name + ": "  + date + ", " +
-            time + ", "  + location);
+            String data = getUserInput("event");
+            file.println(data);
 
         } 
         catch (IOException e){
             System.out.println("Unable to write to file.");
+        }
+    }
+
+    public static String getUserInput(String type){
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter " + type + " name: ");
+        String name = in.nextLine();
+        System.out.println("Enter date: ");
+        String date = in.nextLine();
+        System.out.println("Enter start time: ");
+        String time = in.nextLine();
+
+        if(type.equals("event")){
+
+            System.out.println("Enter location: ");
+            String location = in.nextLine();
+
+            return name + ": "  + date + ", " + 
+            time + ", "  + location;
+        }
+        else{
+
+            System.out.println("Enter duration: ");
+            String duration = in.nextLine();
+            System.out.println("Enter list of people assigned to the task: ");
+            String people = in.nextLine();
+
+            return name + ": " + date + ", " + 
+            time + ", "  + duration + ", "  + "[" + people + "]";
         }
     }
 

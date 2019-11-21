@@ -1,1 +1,3 @@
-// text will be written here
+Event Example: tomorrow, 9pm, Dublin
+Task Example: 21/11/2019, 13:30, 5hrs, [Mary, John, Patrick]
+go to shop: now, 3pm, glasnevin
