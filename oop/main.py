@@ -7,13 +7,7 @@ import re
 def main():
 	q = Queue()
 
-	print("Available commands.\n" + 
-		"'add e' to add an Event.\n" +
-		"'add t' to add a Task.\n" +
-		"'job' to print the most recent job.\n"+
-		"'all' to show all jobs.\n" + 
-		"'r' to remove most recent job.\n" +
-		"'q' to quit.")
+	q.commands()
 	
 	job = input("Enter: ")
 	while job != 'q':
@@ -38,16 +32,22 @@ def main():
 		elif job == 'add e':
 			#go to add event
 			addEvent(q)
+			print("Event added.")
 
 		elif job == 'add t':
 			#go to add task
 			addTask(q)
+			print("Task added.")
 
-		else:
+		elif job == 'help':
+			q.commands()
+
+		else:	
 			print("That is not a command.")
 
 		#repeat until quit
 		job = input("Enter: ")
+	print("Bye!")
 
 def addTask(q):
 

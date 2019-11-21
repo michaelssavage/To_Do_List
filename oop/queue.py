@@ -49,3 +49,13 @@ class Queue:
 				temp = temp.next
 		else:
 			print("List is empty.")
+
+	def commands(self):
+		print("Available commands.\n" +
+		"'add e' to add an Event.\n" +
+		"'add t' to add a Task\n" +
+		"'job' to print first job.\n"+
+		"'all' to show all jobs.\n" + 
+		"'help' to print commands.\n" +
+		"'r' to remove.\n" +
+		"'q' to quit.")
